@@ -1,13 +1,9 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
+import { ClientData } from "../../types/client";
 
 interface ClientTableProps {
-  clientData: {
-    id: string;
-    name: string;
-    email: string;
-    phone: string;
-  }[];
+  clientData: ClientData[];
   onClickDelete: (clientId: string) => void;
 }
 
