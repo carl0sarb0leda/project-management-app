@@ -1,20 +1,16 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_CLIENTS = gql`
-  query get_all_clients {
-    clients {
-      name
-      email
-      phone
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { ClientTable } from "../components";
+import { GET_CLIENTS } from "./api/clients";
 
 export default function Home() {
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const { loading, error, data: clientData } = useQuery(GET_CLIENTS);
+
+  const handleDeleteClient = (clientId: string) => {
+    console.log("🍄", clientId);
+  };
 
   if (loading) {
     return <>loading...</>;
@@ -22,15 +18,18 @@ export default function Home() {
   if (error) {
     return <>{error.message}</>;
   }
-  if (data) {
-    console.log("🥷", data);
+  if (clientData) {
     return (
       <div className={styles.container}>
         <Head>
           <title>Project Management App</title>
         </Head>
-        <main className={styles.main}>Holi</main>
-
+        <main className={styles.main}>
+          <ClientTable
+            clientData={clientData.clients}
+            onClickDelete={handleDeleteClient}
+          />
+        </main>
         <footer className={styles.footer}>v1.0.0 - ©carl0sarb0leda</footer>
       </div>
     );
