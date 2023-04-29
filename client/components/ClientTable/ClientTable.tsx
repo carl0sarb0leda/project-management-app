@@ -12,13 +12,7 @@ export const ClientTable = ({
   onClickDelete,
 }: ClientTableProps) => {
   return (
-    <table
-      style={{
-        border: "0.1rem white solid",
-        borderRadius: "0.5rem",
-        borderSpacing: "1rem",
-      }}
-    >
+    <table className="table table-dark table-striped mt-3">
       <thead>
         <tr>
           <th>Name</th>
@@ -37,7 +31,7 @@ export const ClientTable = ({
                 <td>{client.phone}</td>
                 <td>
                   <button
-                    style={{ backgroundColor: "tomato", cursor: "pointer" }}
+                    className="btn btn-danger btn-sm"
                     onClick={() => onClickDelete(client.id)}
                   >
                     <FaTrash />
