@@ -5,6 +5,8 @@ export type ClientData = {
   phone: string;
 };
 
+export type ClientFormData = Omit<ClientData, "id">;
+
 export type DeleteClientResponse = {
   deleteClient: ClientData;
 };
