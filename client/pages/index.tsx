@@ -2,10 +2,15 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useQuery, useMutation } from "@apollo/client";
-import { ClientTable } from "../components";
+import { ClientTable, AddClientModal } from "../components";
 import { GET_CLIENTS } from "./api/clients/queries";
-import { DELETE_CLIENT } from "./api/clients/mutations";
-import { DeleteClientResponse, GetClientsResponse } from "../types/client";
+import { DELETE_CLIENT, ADD_CLIENT } from "./api/clients/mutations";
+import {
+  AddClientResponse,
+  ClientFormData,
+  DeleteClientResponse,
+  GetClientsResponse,
+} from "../types/client";
 
 export default function Home() {
   const {
@@ -13,12 +18,8 @@ export default function Home() {
     error: clientsError,
     data: clientsData,
   } = useQuery<GetClientsResponse>(GET_CLIENTS);
-  const [deleteClient, { error: deleteError }] =
-    useMutation<DeleteClientResponse>(DELETE_CLIENT);
-
-  if (deleteError) {
-    alert(deleteError.message);
-  }
+  const [deleteClient] = useMutation<DeleteClientResponse>(DELETE_CLIENT);
+  const [addClient] = useMutation<AddClientResponse>(ADD_CLIENT);
 
   const handleDeleteClient = (clientId: string) => {
     deleteClient({
@@ -45,6 +46,31 @@ export default function Home() {
           });
         }
       },
+      onError: (error) => {
+        alert(error.message);
+      },
+    });
+  };
+
+  const handleAddClient = (formData: ClientFormData) => {
+    addClient({
+      variables: formData,
+      update: (cache, { data: responseData }) => {
+        const { clients: cachedClients } =
+          cache.readQuery<GetClientsResponse>({
+            query: GET_CLIENTS,
+          }) ?? {};
+        if (cachedClients && responseData) {
+          //rewrite the cache with the updated values
+          cache.writeQuery({
+            query: GET_CLIENTS,
+            data: { clients: [...cachedClients, responseData.addClient] },
+          });
+        }
+      },
+      onError: (error) => {
+        alert(error.message);
+      },
     });
   };
 
@@ -61,6 +87,7 @@ export default function Home() {
           <title>Project Management App</title>
         </Head>
         <main className={styles.main}>
+          <AddClientModal onSubmit={handleAddClient} />
           <ClientTable
             clientData={clientsData.clients}
             onClickDelete={handleDeleteClient}
