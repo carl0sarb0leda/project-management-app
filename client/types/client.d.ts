@@ -11,6 +11,10 @@ export type DeleteClientResponse = {
   deleteClient: ClientData;
 };
 
+export type AddClientResponse = {
+  addClient: ClientData;
+};
+
 export type GetClientsResponse = {
   clients: ClientData[];
 };
