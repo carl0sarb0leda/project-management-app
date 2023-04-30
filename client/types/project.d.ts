@@ -15,3 +15,7 @@ export type GetProjectsResponse = {
 export type GetProjectResponse = {
   project: ProjectData;
 };
+
+export type AddProjectResponse = {
+  addProject: ProjectData;
+};

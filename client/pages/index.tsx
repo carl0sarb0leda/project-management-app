@@ -2,7 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useQuery, useMutation } from "@apollo/client";
-import { ClientTable, AddClientModal, ProjectList } from "../components";
+import {
+  ClientTable,
+  AddClientModal,
+  ProjectList,
+  AddProjectModal,
+} from "../components";
 import { GET_CLIENTS } from "./api/clients/queries";
 import { DELETE_CLIENT, ADD_CLIENT } from "./api/clients/mutations";
 import {
@@ -88,6 +93,7 @@ export default function Home() {
         </Head>
         <main className={styles.main}>
           <AddClientModal onSubmit={handleAddClient} />
+          <AddProjectModal clientsData={clientsData.clients} />
           <ProjectList />
           <ClientTable
             clientData={clientsData.clients}
