@@ -11,3 +11,7 @@ export type ProjectData = {
 export type GetProjectsResponse = {
   projects: ProjectData[];
 };
+
+export type GetProjectResponse = {
+  project: ProjectData;
+};
