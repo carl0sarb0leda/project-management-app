@@ -1,9 +1,11 @@
+import { ClientData } from "./client";
+
 export type ProjectData = {
   id: string;
   name: string;
   description: string;
   status: string;
-  clientId: string;
+  client: ClientData;
 };
 
 export type GetProjectsResponse = {

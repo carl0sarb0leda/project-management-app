@@ -49,10 +49,10 @@ export const AddClientModal = ({ onSubmit }: AddClientModalProps) => {
       </button>
       {/* Modal */}
       <div
-        className={`modal text-primary fade${showModal ? " show" : ""}`}
+        className={`modal fade${showModal ? " show" : ""}`}
         aria-labelledby="addClientModalLabel"
         aria-hidden={!showModal}
-        style={{ display: showModal ? "block" : "none" }}
+        style={{ color: "black", display: showModal ? "block" : "none" }}
       >
         <div className="modal-dialog">
           <div className="modal-content">
