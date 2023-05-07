@@ -16,11 +16,11 @@ interface ProjectFormElement extends HTMLFormElement {
   readonly elements: ProjectElements;
 }
 
-interface AddProjectModalProps {
+interface ProjectModalProps {
   clientsData: ClientData[];
 }
 
-export const AddProjectModal = ({ clientsData }: AddProjectModalProps) => {
+export const ProjectModal = ({ clientsData }: ProjectModalProps) => {
   const [showModal, setShowModal] = useState(false);
   const formRef = useRef<ProjectFormElement>(null);
 

@@ -6,7 +6,7 @@ import {
   ClientTable,
   AddClientModal,
   ProjectList,
-  AddProjectModal,
+  ProjectModal,
 } from "../components";
 import { GET_CLIENTS } from "./api/clients/queries";
 import { DELETE_CLIENT, ADD_CLIENT } from "./api/clients/mutations";
@@ -94,7 +94,7 @@ export default function Home() {
         <main className={styles.main}>
           <div className="d-flex gap-3 mb-4">
             <AddClientModal onSubmit={handleAddClient} />
-            <AddProjectModal clientsData={clientsData.clients} />
+            <ProjectModal clientsData={clientsData.clients} />
           </div>
           <ProjectList />
           <ClientTable
