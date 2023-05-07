@@ -94,7 +94,7 @@ export default function Home() {
         <main className={styles.main}>
           <div className="d-flex gap-3 mb-4">
             <AddClientModal onSubmit={handleAddClient} />
-            <ProjectModal clientsData={clientsData.clients} />
+            <ProjectModal />
           </div>
           <ProjectList />
           <ClientTable

@@ -4,6 +4,7 @@ import { DELETE_PROJECT } from "../api/projects/mutations";
 import { FaEnvelope, FaPhone, FaIdBadge, FaTrash } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { GetProjectResponse } from "../../types/project";
+import { ProjectModal } from "../../components";
 import Link from "next/link";
 
 export default function Project() {
@@ -58,11 +59,9 @@ export default function Project() {
               <FaPhone className="icon" /> {data.project.client.phone}
             </li>
           </ul>
-          <div className="d-flex mt-5 ms-auto">
-            <button
-              className="btn btn-danger m-2"
-              onClick={handleDeleteProject}
-            >
+          <div className="d-flex mt-5 ms-auto gap-1">
+            <ProjectModal editMode project={data.project} />
+            <button className="btn btn-danger" onClick={handleDeleteProject}>
               <FaTrash className="icon" /> Delete Project
             </button>
           </div>
