@@ -92,8 +92,10 @@ export default function Home() {
           <title>Project Management App</title>
         </Head>
         <main className={styles.main}>
-          <AddClientModal onSubmit={handleAddClient} />
-          <AddProjectModal clientsData={clientsData.clients} />
+          <div className="d-flex gap-3 mb-4">
+            <AddClientModal onSubmit={handleAddClient} />
+            <AddProjectModal clientsData={clientsData.clients} />
+          </div>
           <ProjectList />
           <ClientTable
             clientData={clientsData.clients}

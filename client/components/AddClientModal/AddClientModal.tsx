@@ -96,7 +96,7 @@ export const AddClientModal = ({ onSubmit }: AddClientModalProps) => {
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-secondary">
+                <button type="submit" className="btn btn-primary">
                   Submit
                 </button>
               </form>
