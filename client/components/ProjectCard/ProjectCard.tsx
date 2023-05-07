@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProjectData } from "../../types/project";
+import { Status } from "../Status/Status";
 
 interface ProjectCardProps {
   project: ProjectData;
@@ -18,12 +19,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
           <div className="small d-flex align-items-center gap-1">
             Status:
-            <span
-              style={{ backgroundColor: "#2c3034" }}
-              className="badge badge-pill badge-light"
-            >
-              {project.status}
-            </span>
+            <Status status={project.status} />
           </div>
         </div>
       </div>
