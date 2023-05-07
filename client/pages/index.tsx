@@ -9,6 +9,7 @@ import {
   ProjectModal,
 } from "../components";
 import { GET_CLIENTS } from "./api/clients/queries";
+import { GET_PROJECTS } from "./api/projects/queries";
 import { DELETE_CLIENT, ADD_CLIENT } from "./api/clients/mutations";
 import {
   AddClientResponse,
@@ -51,6 +52,8 @@ export default function Home() {
           });
         }
       },
+      //Refetch projects after delete client linked to project
+      refetchQueries: [{ query: GET_PROJECTS }],
       onError: (error) => {
         alert(error.message);
       },
