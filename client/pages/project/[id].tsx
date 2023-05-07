@@ -1,6 +1,7 @@
-import { useQuery } from "@apollo/client";
-import { GET_PROJECT } from "../api/projects/queries";
-import { FaEnvelope, FaPhone, FaIdBadge } from "react-icons/fa";
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_PROJECT, GET_PROJECTS } from "../api/projects/queries";
+import { DELETE_PROJECT } from "../api/projects/mutations";
+import { FaEnvelope, FaPhone, FaIdBadge, FaTrash } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { GetProjectResponse } from "../../types/project";
 import Link from "next/link";
@@ -11,6 +12,25 @@ export default function Project() {
   const { loading, error, data } = useQuery<GetProjectResponse>(GET_PROJECT, {
     variables: { id },
   });
+
+  /**
+   * Delete Project has a different logic from delete client
+   * In here we refetch data, rather than update cache,
+   * also the parameter are pass in useMutation hook directly
+   * rather than in deleteProject function
+   */
+  const [deleteProject] = useMutation(DELETE_PROJECT, {
+    variables: { id: id },
+    onCompleted: () => router.push("/"),
+    refetchQueries: [{ query: GET_PROJECTS }],
+    onError: (error) => {
+      alert(error.message);
+    },
+  });
+
+  const handleDeleteProject = () => {
+    deleteProject();
+  };
 
   if (loading) return <>loading...</>;
   if (error) return <>{error.message}</>;
@@ -38,6 +58,14 @@ export default function Project() {
               <FaPhone className="icon" /> {data.project.client.phone}
             </li>
           </ul>
+          <div className="d-flex mt-5 ms-auto">
+            <button
+              className="btn btn-danger m-2"
+              onClick={handleDeleteProject}
+            >
+              <FaTrash className="icon" /> Delete Project
+            </button>
+          </div>
         </div>
       )}
     </>
