@@ -1,0 +1,32 @@
+{
+  "name": "project-management-app",
+  "version": "1.0.0",
+  "description": "Full stack application to handle projects and clients",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carl0sarb0leda/project-management-app.git"
+  },
+  "keywords": [],
+  "author": "carl0sarb0leda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carl0sarb0leda/project-management-app/issues"
+  },
+  "homepage": "https://github.com/carl0sarb0leda/project-management-app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "graphql": "^15.8.0",
+    "graphql-http": "^1.17.1",
+    "mongoose": "^7.0.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22"
+  }
+}
